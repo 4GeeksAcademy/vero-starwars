@@ -1,11 +1,10 @@
-import React, { useState, useContext } from "react"
-import { Context } from "../store/appContext.js";
-import { Link } from "react-router-dom";
+//aca llega la informacion desde mas-info
 
-function Card({ name, gender, hair_color, eye_color, id }) {
+import React from "react";
+
+function Personaje({ id,name,gender,hair_color,eye_color,birth_year,homeworld,species}) {
     return (
-        <div className="">
-
+        <div className="container">
             <div className="card" style={{ width: "18rem", flex: "none", margin: "10px" }}>
                 <img src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} className="card-img-top" alt={name} />
                 <div className="card-body">
@@ -13,19 +12,17 @@ function Card({ name, gender, hair_color, eye_color, id }) {
                     <p className="card-text">gender: {gender}</p>
                     <p className="card-text">hair_color: {hair_color}</p>
                     <p className="card-text">eye_color: {eye_color}</p>
+                    <p className="card-text">birth_year: {birth_year}</p>
+                    <p className="card-text">homeworld: {homeworld}</p>
+                    <p className="card-text">species: {species}</p>
 
-                    <Link to={`/masinfo/${id}`}>
-                    <button className="btn btn-outline-primary float-start">More info</button>
-                    </Link>
-                    <button className="btn btn-outline-warning float-end">
-                        <i className="fa fa-heart"></i>
-                    </button>
 
                 </div>
+
             </div>
+
         </div>
 
     )
 };
-export default Card
-
+export default Personaje

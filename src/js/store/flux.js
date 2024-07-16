@@ -3,6 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			personajes: [],
 			planetas: [],
+			personaje: {},
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -33,7 +34,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.log(error)
 				}
-			}
+			},
+			personaje: async (id) => {
+				try {
+					const response = await fetch(`https://swapi.dev/api/people/${id}/`, {
+						method: `GET`,
+					})
+					if (response.ok) {
+						const data = await response.json()
+						setStore({ personaje: data })
+					}
+				} catch (error) {
+					console.log(error)
+				}
+			},
+
 		}
 	}
 };

@@ -1,17 +1,20 @@
 import React, { useState, useContext } from "react"
 import { Context } from "../store/appContext.js";
 
-function Card({ name, gender, hair_color, eye_color, id }) {
+function CardPlanetas({ name, population, terrain, id }) {
     return (
         <div className="">
 
             <div className="card" style={{ width: "18rem", flex: "none", margin: "10px" }}>
-                <img src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} className="card-img-top" alt={name} />
+                {id == 1 ?
+                    <img src={"https://static.wikia.nocookie.net/esstarwars/images/b/b0/Tatooine_TPM.png"} className="card-img-top" alt={name} />
+                    :
+                    <img src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} className="card-img-top" alt={name} />
+                }
                 <div className="card-body">
                     <h5 className="card-title">{name}</h5>
-                    <p className="card-text">gender: {gender}</p>
-                    <p className="card-text">hair_color: {hair_color}</p>
-                    <p className="card-text">eye_color: {eye_color}</p>
+                    <p className="card-text">population: {population}</p>
+                    <p className="card-text">terrain: {terrain}</p>
 
 
                     <button className="btn btn-outline-primary float-start">More info</button>
@@ -25,5 +28,4 @@ function Card({ name, gender, hair_color, eye_color, id }) {
 
     )
 };
-export default Card
-
+export default CardPlanetas

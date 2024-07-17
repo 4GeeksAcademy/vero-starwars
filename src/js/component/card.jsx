@@ -3,6 +3,12 @@ import { Context } from "../store/appContext.js";
 import { Link } from "react-router-dom";
 
 function Card({ name, gender, hair_color, eye_color, id }) {
+    const{store, actions}=useContext(Context)
+    function agregarFavoritos(){
+        actions.favoritos(name)
+
+    }
+
     return (
         <div className="">
 
@@ -17,7 +23,7 @@ function Card({ name, gender, hair_color, eye_color, id }) {
                     <Link to={`/masinfo/${id}`}>
                     <button className="btn btn-outline-primary float-start">More info</button>
                     </Link>
-                    <button className="btn btn-outline-warning float-end">
+                    <button onClick={agregarFavoritos} className="btn btn-outline-warning float-end">
                         <i className="fa fa-heart"></i>
                     </button>
 

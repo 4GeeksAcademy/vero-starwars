@@ -2,6 +2,12 @@ import React, { useState, useContext } from "react"
 import { Context } from "../store/appContext.js";
 
 function CardPlanetas({ name, population, terrain, id }) {
+    const{store, actions}=useContext(Context)
+    function agregarFavoritos(){
+        actions.favoritos(name)
+
+    }
+
     return (
         <div className="">
 
@@ -16,11 +22,13 @@ function CardPlanetas({ name, population, terrain, id }) {
                     <p className="card-text">population: {population}</p>
                     <p className="card-text">terrain: {terrain}</p>
 
-
+                    <Link to={`/masinfo/${id}`}>
                     <button className="btn btn-outline-primary float-start">More info</button>
-                    <button className="btn btn-outline-warning float-end">
+                    </Link>
+                    <button onClick={agregarFavoritos} className="btn btn-outline-warning float-end">
                         <i className="fa fa-heart"></i>
                     </button>
+
 
                 </div>
             </div>

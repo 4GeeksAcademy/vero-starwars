@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react"
 import { Context } from "../store/appContext.js";
+import { Link } from "react-router-dom";
 
 function CardPlanetas({ name, population, terrain, id }) {
     const{store, actions}=useContext(Context)

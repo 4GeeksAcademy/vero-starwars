@@ -1,9 +1,11 @@
 // name, population, terrain, id, mass, climate, diameter, gravity,orbital_period, surface_water
-import React from 'react';
+import React,{useContext} from 'react';
+import {Context} from "../store/appContext"
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 export const GuardarPlanetas = () => {
+  const {actions}=useContext(Context)
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -32,15 +34,18 @@ export const GuardarPlanetas = () => {
         orbital_period: Yup.string(),
         surface_water: Yup.string()
     }),
-    onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values) => {
+      // alert(JSON.stringify(values, null, 2));
+      console.log(values.name);
+      let resp= await actions.agregarPlaneta(values.name, values.population, values.mass, values.climate, values.diameter,values.gravity,values.orbital_period,values.surface_water)
+    if (resp) {console.log("Planeta guardado");}
     },
   });
   return (
-    <div className="container">
-        <h1 className='text-center'>Agregar Planetas</h1>
+    <div className="container justify-content-center">
+        <h1 className='text-start'>Agregar Planetas</h1>
     <form onSubmit={formik.handleSubmit}>
-    <div className="row">
+    <div className="row w-50 ">
       <label htmlFor="firstName">Nombre</label>
       <input
         id="name"
@@ -93,7 +98,7 @@ export const GuardarPlanetas = () => {
         <div>{formik.errors.mass}</div>
       ) : null}
 
-  <label htmlFor="climate">Terreno</label>
+  <label htmlFor="climate">Clima</label>
       <input
         id="climate"
         name="climate"
@@ -158,7 +163,7 @@ export const GuardarPlanetas = () => {
         <div>{formik.errors.surface_water}</div>
       ) : null}
       <div className="col-4">
-      <button className="mt-3" type="submit">Submit</button>
+      <button className="mt-3 btn btn-primary" type="submit">Submit</button>
       </div>
       </div>
     </form>

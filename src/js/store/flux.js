@@ -62,7 +62,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(error);
 			}
 			},
-
+			agregarPlaneta: async(name_planet,
+				populate,
+				mass,
+				climate,
+				diameter,
+				gravity,
+				orbital_period,
+				surface_water) =>{
+				try {
+					const response = await fetch('https://flask-rest-hello-a950.onrender.com/planet',{
+						method:'POST',
+						headers:{"Content-Type":"application/json"},
+						body: JSON.stringify({
+							name_planet: name_planet,
+    						populate: populate,
+							mass:mass,
+							climate:climate,
+							diameter:diameter,
+							gravity: gravity,
+							orbital_period:orbital_period,
+							surface_water: surface_water
+						})
+					})
+					return true
+					
+				} catch (error) {
+				console.log(error);	
+				return false
+				}
+			},
 
 			favoritos: (name) => {
 				const store= getStore();

@@ -14,7 +14,7 @@ function Card({ name, gender, hair_color, eye_color, id }) {
 
             <div className="card" style={{ width: "18rem", flex: "none", margin: "10px" }}>
                 <img src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} className="card-img-top" alt={name} />
-                <div className="card-body">
+                <div className="card-body text-black">
                     <h5 className="card-title">{name}</h5>
                     <p className="card-text">gender: {gender}</p>
                     <p className="card-text">hair_color: {hair_color}</p>

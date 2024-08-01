@@ -11,7 +11,8 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import PantallaPrincipal from "./views/pantalla-principal.jsx"
 import MasInfo from "./views/mas-info.jsx";
-import { GuardarPlanetas } from "./component/guardar-planetas.jsx";
+import { GuardarPlanetas } from "./views/guardar-planetas.jsx";
+import GuardarPersonaje from "./views/guardar-personaje.js";
 
 //create your first component
 const Layout = () => {
@@ -29,6 +30,7 @@ const Layout = () => {
 						<Route path="/masinfo/:id" element ={<MasInfo/>}/>
 						<Route path="/" element={<Home />} />
 						<Route path="/guardar-planeta" element={<GuardarPlanetas />} />
+						<Route path="/guardar-personaje" element={<GuardarPersonaje />} />
 						<Route path="/demo" element={<Demo />} />
 						<Route path="/single/:theid" element={<Single />} />
 						<Route path="*" element={<h1>Not found!</h1>} />

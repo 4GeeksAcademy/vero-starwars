@@ -62,7 +62,7 @@ function Planetas() {
                 {store.planetas.map((item, index) => (
                     <CardPlanetas
                         key={index}
-                        name={item.name}
+                        name={item.name_planet}
                         population={item.population}
                         terrain={item.terrain}
                         id={index + 1}

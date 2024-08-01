@@ -10,7 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// Use getActions to call a function within a fuction
 			listaDePeronajes: async () => {
 				try {
-					const response = await fetch(`https://swapi.dev/api/people`, {
+					const response = await fetch(process.env.BACKEND_URL+`/people`, {
 						method: `GET`,
 					})
 
@@ -25,11 +25,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			listaDePlanetas: async () => {
 				try {
-					const response = await fetch(`https://swapi.dev/api/planets`, {
+					const response = await fetch(process.env.BACKEND_URL+`/planets`, {
 						method: `GET`,
 					})
 					if (response.ok) {
 						const data = await response.json()
+						console.log(data);
 						setStore({ planetas: data.results })
 					}
 				} catch (error) {
@@ -38,7 +39,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			personaje: async (id) => {
 				try {
-					const response = await fetch(`https://swapi.dev/api/people/${id}/`, {
+					const response = await fetch(process.env.BACKEND_URL+`/people/${id}/`, {
 						method: `GET`,
 					})
 					if (response.ok) {
@@ -51,7 +52,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			planeta: async (id) => {
 				try{
-					const response = await fetch(`https://swapi.dev/api/planets/${id}/`,{
+					const response = await fetch(process.env.BACKEND_URL+`/planets/${id}/`,{
 					method: `GET`
 				})
 				if (response.ok){
@@ -71,7 +72,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				orbital_period,
 				surface_water) =>{
 				try {
-					const response = await fetch('https://flask-rest-hello-a950.onrender.com/planet',{
+					const response = await fetch(process.env.BACKEND_URL+'/planet',{
 						method:'POST',
 						headers:{"Content-Type":"application/json"},
 						body: JSON.stringify({
@@ -92,6 +93,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 				return false
 				}
 			},
+			agregarPersonaje: async(name,gender,
+				hair_color,
+				eye_color,
+				birth_year,
+				homeworld,
+				species) => {
+		 		try {
+					const response = await fetch(process.env.BACKEND_URL+'/characters',{
+						method:'POST',
+						headers:{"Content-Type":"application/json"},
+						body: JSON.stringify({
+							name:name,
+							gender:gender,
+							hair_color:hair_color,
+							eye_color:eye_color,
+							birth_year:birth_year,
+							homeworld:homeworld,
+							species:species
+						})
+					})
+					return true	
+
+				} catch (error) {
+					console.log(error);	
+					return false
+				}
+			},	
 
 			favoritos: (name) => {
 				const store= getStore();
